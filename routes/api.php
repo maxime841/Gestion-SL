@@ -94,38 +94,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('role/delete/{id}', [RoleController::class, 'delete'])
         ->middleware(['isroot']);
 
-    // route lands
-    Route::post('land/create', [LandController::class, 'create'])
-        ->middleware('isadmin');
-    Route::put('land/update/{id}', [LandController::class, 'update'])
-        ->middleware('isadmin');
-    Route::delete('land/delete/{id}', [LandController::class, 'delete'])
-        ->middleware('isadmin');
-    Route::post('land/uploads/{id}', [LandController::class, 'uploadFiles'])
-        ->middleware('isadmin');
-
-    // route tenants
-    Route::post('tenant/create', [TenantController::class, 'create'])
-        ->middleware('isadmin');
-    Route::put('tenant/update/{id}', [TenantController::class, 'update'])
-        ->middleware('isadmin');
-    Route::delete('tenant/delete/{id}', [TenantController::class, 'delete'])
-        ->middleware('isadmin');
-
-    // route houses
-    Route::post('house/create', [HouseController::class, 'create'])
-        ->middleware('isadmin');
-    Route::put('house/update/{id}', [HouseController::class, 'update'])
-        ->middleware('isadmin');
-    Route::delete('house/delete/{id}', [HouseController::class, 'delete'])
-        ->middleware('isadmin');
-    Route::post('house/uploads/{id}', [HouseController::class, 'uploadFiles'])
-        ->middleware('isadmin');
-    Route::get('house/{idhouse}/land/{idland}/affect', [HouseController::class, 'affectLandOfHouse'])
-        ->middleware('isadmin');
-    Route::get('house/{idhouse}/tenant/{idtenant}/affect', [HouseController::class, 'affectTenantOfHouse'])
-        ->middleware('isadmin');
-
     // route picture
     Route::post('picture/update/{id}', [PictureController::class, 'updateImage'])
         ->middleware('isadmin');
@@ -178,18 +146,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 /********************
  *** NOT CONNECTED ***
 /***************** */
-
-// route lands
-Route::get('lands', [LandController::class, 'getAll']);
-Route::get('land/{id}', [LandController::class, 'getOne']);
-
-// route tenants
-Route::get('tenants', [TenantController::class, 'getAll']);
-Route::get('tenant/{id}', [TenantController::class, 'getOne']);
-
-// route houses
-Route::get('houses', [HouseController::class, 'getAll']);
-Route::get('house/{id}', [HouseController::class, 'getOne']);
 
 //Route club
 Route::get('club', [ClubController::class, 'getAll']);
