@@ -7,11 +7,8 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LandController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HouseController;
-use App\Http\Controllers\TenantController;
 use App\Http\Controllers\PictureController;
 
 /*
@@ -148,8 +145,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 /***************** */
 
 //Route club
-Route::get('club', [ClubController::class, 'getAll']);
-Route::get('club/{id}', [ClubController::class, 'getOne']);
+Route::get('/club', [ClubController::class, 'getAll']);
+Route::get('/club/{id}', [ClubController::class, 'getOne']);
 
 //Route dj
 Route::get('/dj', [DjController::class, 'getAll']);
