@@ -13,8 +13,10 @@ class DancerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
         $clubs = Club::all();
         $parties = Party::all();
