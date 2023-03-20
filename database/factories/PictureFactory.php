@@ -17,7 +17,9 @@ class PictureFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'picture_url' => fake()->imageUrl(640, 480, 'animals', true),
+            'favori' => fake()->boolean(false),
         ];
     }
 }

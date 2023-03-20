@@ -14,10 +14,12 @@ class DancerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            "name" =>fake()->name(),
+            "presentation" =>fake()->text(),
+            "date_entrance" =>fake()->date(),
         ];
     }
 }
