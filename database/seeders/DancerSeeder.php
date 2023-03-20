@@ -18,24 +18,16 @@ class DancerSeeder extends Seeder
      */
     public function run()
     {
-        $clubs = Club::all();
-        $parties = Party::all();
-        foreach ($clubs as $club) {
-            foreach ($parties as $party) {
-            // create dancers
-            $dancers = Dancer::factory()->count(5)->create();
-            // create pictures for dancers
-                foreach ($dancers as $dancer) {
-                    $pictures = Picture::factory()->count(4)->create();
-                     $pictureFavori = Picture::factory()->count(1)->create([
-                    'favori' => true
-                    ]);
-                $dancer->pictures()->saveMany($pictures);
-                $dancer->pictures()->save($pictureFavori[0]);
-                } 
-                $party->dancers()->saveMany($dancers);
-            }  
-            $club->dancers()->saveMany($dancers);
-        }
+         // create dancers
+         $dancers = Dancer::factory()->count(5)->create();
+         // create pictures for club
+         foreach ($dancers as $dancer) {
+             $pictures = Picture::factory()->count(4)->create();
+             $pictureFavori = Picture::factory()->count(1)->create([
+                 'favori' => true
+             ]);
+             $dancer->pictures()->saveMany($pictures);
+             $dancer->pictures()->save($pictureFavori[0]);
+         }
     }
 }

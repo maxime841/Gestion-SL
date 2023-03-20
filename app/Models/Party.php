@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Dj;
-use App\Models\Dancer;
 use App\Models\Club;
+use App\Models\Host;
+use App\Models\Dancer;
 use App\Models\Picture;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Party extends Model
 {
@@ -23,6 +24,11 @@ class Party extends Model
         public function djs()
     {
         return $this->belongsToMany(Dj::class);
+    }
+
+    public function hosts()
+    {
+        return $this->belongsToMany(Host::class);
     }
 
     public function dancers()

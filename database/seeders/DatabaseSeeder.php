@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ClubSeeder::class,
             PartySeeder::class,
-            DancerSeeder::class,
             DjSeeder::class,
+            DancerSeeder::class,
             HostSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,

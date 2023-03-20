@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('djparties', function (Blueprint $table) {
+        Schema::create('club_host', function (Blueprint $table) {
             $table->id();
+            $table->integer('club_id')->unsigned();
+            $table->integer('host_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('djparties');
+        Schema::dropIfExists('club_host');
     }
 };
