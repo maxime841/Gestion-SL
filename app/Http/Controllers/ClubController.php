@@ -30,6 +30,7 @@ class ClubController extends Controller
             }
             $club->dancers;
             $club->djs;
+            $club->hosts;
 
             // recover party
             $club->parties;

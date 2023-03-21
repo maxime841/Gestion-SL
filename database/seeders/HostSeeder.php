@@ -15,17 +15,24 @@ class HostSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-         // create host
-         $hosts = Host::factory()->count(5)->create();
-         // create pictures for club
-         foreach ($hosts as $host) {
-             $pictures = Picture::factory()->count(4)->create();
-             $pictureFavori = Picture::factory()->count(1)->create([
-                 'favori' => true
-             ]);
-             $host->pictures()->saveMany($pictures);
-             $host->pictures()->save($pictureFavori[0]);
-         }
+    {  $clubs = Club::all();
+        $parties = Party::all();
+        foreach ($clubs as $club) {
+            foreach ($parties as $party) {
+            // create hosts
+            $hosts = Host::factory()->count(5)->create();
+            // create pictures for host
+                foreach ($hosts as $host) {
+                    $pictures = Picture::factory()->count(4)->create();
+                     $pictureFavori = Picture::factory()->count(1)->create([
+                    'favori' => true
+                    ]);
+                $host->pictures()->saveMany($pictures);
+                $host->pictures()->save($pictureFavori[0]);
+                } 
+                $party->djs()->saveMany($hosts);
+            }  
+            $club->djs()->saveMany($hosts);
+        }
     }
 }

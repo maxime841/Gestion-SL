@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DjController;
-use App\Http\Controllers\ClubController;
-use App\Http\Controllers\PartyController;
-use App\Http\Controllers\DancerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClubController;
+use App\Http\Controllers\HostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\DancerController;
 use App\Http\Controllers\PictureController;
 
 /*
@@ -140,6 +141,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     ->middleware('managerdancer');
     });
 
+    // route host
+    Route::post('host/create', [HostController::class, 'create'])
+    ->middleware('managerclub');
+    Route::put('host/update/{id}', [HostController::class, 'update'])
+    ->middleware('managerclub');
+    Route::delete('host/delete/{id}', [HostController::class, 'delete'])
+    ->middleware('managerclub');
+    Route::post('host/uploads/{id}', [HostController::class, 'uploadFiles'])
+    ->middleware('managerclub');
+
 /********************
  *** NOT CONNECTED ***
 /***************** */
@@ -159,4 +170,8 @@ Route::get('/dancer/{id}', [DancerController::class, 'getOne']);
 //Route party
 Route::get('/party', [PartyController::class, 'getAll']);
 Route::get('/party/{id}', [PartyController::class, 'getOne']);
+
+//Route host
+Route::get('/host', [HostController::class, 'getAll']);
+Route::get('/host/{id}', [HostController::class, 'getOne']);
 
