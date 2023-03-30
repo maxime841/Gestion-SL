@@ -28,7 +28,7 @@ class ActivitySeeder extends Seeder
             $activity->pictures()->saveMany($pictures);
             $activity->pictures()->save($pictureFavori[0]);
             }
-        $hobby->articles()->saveMany($activities);
+        $hobby->activities()->saveMany($activities);
         }
     }
 }

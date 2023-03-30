@@ -9,6 +9,7 @@ use App\Http\Controllers\HostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
 use App\Http\Controllers\PictureController;
