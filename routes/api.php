@@ -154,13 +154,23 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // route shop
     Route::post('shop/create', [ShopController::class, 'create'])
-    ->middleware('isAdmin');
+    ->middleware('isManagerShop');
     Route::put('shop/update/{id}', [ShopController::class, 'update'])
-    ->middleware('isAdmin');
+    ->middleware('isManagerShop');
     Route::delete('shop/delete/{id}', [ShopController::class, 'delete'])
-    ->middleware('isAdmin');
+    ->middleware('isManagerShop');
     Route::post('shop/uploads/{id}', [ShopController::class, 'uploadFiles'])
-    ->middleware('isAdmin');
+    ->middleware('isManagerShop');
+
+    // route hobby
+    Route::post('hobby/create', [HobbyController::class, 'create'])
+    ->middleware('isManagerHobby');
+    Route::put('hobby/update/{id}', [HobbyController::class, 'update'])
+    ->middleware('isManagerHobby');
+    Route::delete('hobby/delete/{id}', [HobbyController::class, 'delete'])
+    ->middleware('isManagerHobby');
+    Route::post('hobby/uploads/{id}', [HobbyController::class, 'uploadFiles'])
+    ->middleware('isManagerHobby');
 
 /********************
  *** NOT CONNECTED ***
@@ -189,4 +199,8 @@ Route::get('/host/{id}', [HostController::class, 'getOne']);
 //Route shop
 Route::get('/shop', [ShopController::class, 'getAll']);
 Route::get('/shop/{id}', [ShopController::class, 'getOne']);
+
+//Route hobby
+Route::get('/hobby', [HobbyController::class, 'getAll']);
+Route::get('/hobby/{id}', [HobbyController::class, 'getOne']);
 

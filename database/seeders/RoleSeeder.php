@@ -27,6 +27,12 @@ class RoleSeeder extends Seeder
         'libelle' => 'admin',
     ],);
     Role::factory()->create([
+        'libelle' => 'managershop',
+    ],);
+    Role::factory()->create([
+        'libelle' => 'managerhobby',
+    ],);
+    Role::factory()->create([
         'libelle' => 'managerclub',
     ],);
     Role::factory()->create([
@@ -41,6 +47,5 @@ class RoleSeeder extends Seeder
     Role::factory()->create([
         'libelle' => 'public',
     ],);
-
     }
 }
