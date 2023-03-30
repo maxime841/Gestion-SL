@@ -22,7 +22,7 @@ class DancerController extends Controller
         $dancers = Dancer::all();
         foreach ($dancers as $dancer) {
             foreach ($dancer->pictures as $picture) {
-                if ($picture->favori == true && $picture->picturable_id == $dancer->id) {
+                if ($picture->favori == true) {
                     $dancer->picture = $picture;
                 }
             }
@@ -40,7 +40,7 @@ class DancerController extends Controller
     {
         $dancer =  Dancer::find($id);
         foreach ($dancer->pictures as $picture) {
-            if ($picture->picturable_type == 'dancer') {
+            if ($picture->favori == true) {
                 $dancer->picture = $picture;
             }
         }

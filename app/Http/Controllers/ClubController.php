@@ -28,12 +28,11 @@ class ClubController extends Controller
                     $club->picture = $picture;
                 }
             }
+            // recover party
+            $club->parties;
             $club->dancers;
             $club->djs;
             $club->hosts;
-
-            // recover party
-            $club->parties;
             // recover pictures of party
             foreach ($club->parties as $party) {
                 foreach ($party->pictures as $picture) {

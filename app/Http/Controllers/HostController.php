@@ -22,7 +22,7 @@ class HostController extends Controller
         $hosts = Host::all();
         foreach ($hosts as $host) {
             foreach ($host->pictures as $picture) {
-                if ($picture->favori == true && $picture->picturable_id == $host->id) {
+                if ($picture->favori == true) {
                     $host->picture = $picture;
                 }
             }
@@ -40,7 +40,7 @@ class HostController extends Controller
     {
         $host =  Host::find($id);
         foreach ($host->pictures as $picture) {
-            if ($picture->picturable_type == 'host') {
+            if ($picture->favori == true) {
                 $host->picture = $picture;
             }
         }

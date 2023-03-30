@@ -23,7 +23,7 @@ class DjController extends Controller
         $djs = Dj::all();
         foreach ($djs as $dj) {
             foreach ($dj->pictures as $picture) {
-                if ($picture->favori == true && $picture->picturable_id == $dj->id) {
+                if ($picture->favori == true) {
                     $dj->picture = $picture;
                 }
             }
@@ -41,11 +41,11 @@ class DjController extends Controller
     {
         $dj =  Dj::find($id);
         foreach ($dj->pictures as $picture) {
-            if ($picture->picturable_type == 'dj') {
+            if ($picture->favori == true) {
                 $dj->picture = $picture;
             }
         }
-        return response()->json(['club' => $dj]);
+        return response()->json(['dj' => $dj]);
     }
 
     /**

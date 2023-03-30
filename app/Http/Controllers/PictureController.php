@@ -31,7 +31,7 @@ class PictureController extends Controller
         if ($request->image) {
             // add image file in project
             $path = $request->file('image')->storeAs(
-                'public/images/lands',
+                'public/images',
                 $picture->name
             );
 
