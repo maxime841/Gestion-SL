@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
@@ -151,6 +152,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('host/uploads/{id}', [HostController::class, 'uploadFiles'])
     ->middleware('managerclub');
 
+    // route shop
+    Route::post('shop/create', [ShopController::class, 'create'])
+    ->middleware('isAdmin');
+    Route::put('shop/update/{id}', [ShopController::class, 'update'])
+    ->middleware('isAdmin');
+    Route::delete('shop/delete/{id}', [ShopController::class, 'delete'])
+    ->middleware('isAdmin');
+    Route::post('shop/uploads/{id}', [ShopController::class, 'uploadFiles'])
+    ->middleware('isAdmin');
+
 /********************
  *** NOT CONNECTED ***
 /***************** */
@@ -174,4 +185,8 @@ Route::get('/party/{id}', [PartyController::class, 'getOne']);
 //Route host
 Route::get('/host', [HostController::class, 'getAll']);
 Route::get('/host/{id}', [HostController::class, 'getOne']);
+
+//Route shop
+Route::get('/shop', [ShopController::class, 'getAll']);
+Route::get('/shop/{id}', [ShopController::class, 'getOne']);
 
