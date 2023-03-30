@@ -28,7 +28,7 @@ class ArticleSeeder extends Seeder
             $article->pictures()->saveMany($pictures);
             $article->pictures()->save($pictureFavori[0]);
             }
-        $shop->parties()->saveMany($articles);
+        $shop->articles()->saveMany($articles);
         }
     }
 }
