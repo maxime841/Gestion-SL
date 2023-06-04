@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Commentaire;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityUpdateRequest extends FormRequest
+class CommentClubCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +26,10 @@ class ActivityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'owner' => ['required', 'string'],
-            'presentation' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'price' => ['required', 'string'],
-            'tag' => ['required', 'string'],
+            'title' => ['required', 'string', Rule::unique(Commentaire::class)],
+            'commentaire' => ['required', 'string', Rule::unique(Commentaire::class)],
+            //'author' => ['required', 'string'],
+            //'date_comment' => ['required', 'date'],
         ];
     }
 }

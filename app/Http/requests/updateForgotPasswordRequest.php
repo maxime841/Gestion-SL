@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Password\PasswordValidationRules;
 
-class ActivityUpdateRequest extends FormRequest
+class UpdateForgotPasswordRequest extends FormRequest
 {
+    use PasswordValidationRules;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,12 +28,9 @@ class ActivityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'owner' => ['required', 'string'],
-            'presentation' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'price' => ['required', 'string'],
-            'tag' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', Rule::exists('users')],
+            'token' => ['required', 'string'],
+            'password' => [$this->passwordRules()]
         ];
     }
 }

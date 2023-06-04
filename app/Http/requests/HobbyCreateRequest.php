@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Shop;
+use App\Models\Hobby;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -7,6 +7,7 @@ use App\Models\Club;
 use App\Models\Host;
 use App\Models\Dancer;
 use App\Models\Picture;
+use App\Models\Commentaire;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

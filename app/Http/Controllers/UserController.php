@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AuthLoginRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
@@ -80,6 +81,18 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
+
+     /**
+     * login user with email and password
+     * * 200 => [access_token, authenticated]
+     * * 200 => [message, authenticated]
+     * * 403 => [authenticated, error_message]
+     * * 422 => error validator [message, errors=>nameinput]
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    
     public function updateRoleOfUser(Request $request): JsonResponse
     {
         $user = User::find($request->iduser);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActivityUpdateRequest extends FormRequest
+class TenantUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,7 @@ class ActivityUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'owner' => ['required', 'string'],
-            'presentation' => ['required', 'string'],
-            'description' => ['required', 'string'],
-            'price' => ['required', 'string'],
-            'tag' => ['required', 'string'],
+            'rent' => ['required', 'integer'],
         ];
     }
 }

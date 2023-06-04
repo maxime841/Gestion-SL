@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Models\Dj;
-use App\Models\Dancer;
+use App\Models\Host;
 use App\Models\Party;
+use App\Models\Dancer;
 use App\Models\Picture;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Commentaire;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Club extends Model
 {

@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Land;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ActivityUpdateRequest extends FormRequest
+class LandCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +26,14 @@ class ActivityUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'owner' => ['required', 'string'],
+            'name' => ['required', 'string', Rule::unique(Land::class)],
+            'owner' => '',
             'presentation' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'string'],
-            'tag' => ['required', 'string'],
+            'group' => ['required', 'string', Rule::unique(Land::class)],
+            'prims' => ['required'],
+            'remaining_prims' => ['required'],
+            'date_buy' => ['required', 'date']
         ];
     }
 }

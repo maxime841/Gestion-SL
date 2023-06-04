@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Article;
+use App\Models\Activity;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -30,7 +30,7 @@ class ActivityCreateRequest extends FormRequest
             'owner' => ['required', 'string'],
             'presentation' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'number'],
+            'price' => ['required', 'string'],
             'tag' => ['required', 'string']
         ];
     }

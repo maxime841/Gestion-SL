@@ -30,9 +30,9 @@ class HostSeeder extends Seeder
                 $host->pictures()->saveMany($pictures);
                 $host->pictures()->save($pictureFavori[0]);
                 } 
-                $party->djs()->saveMany($hosts);
+                $party->hosts()->saveMany($hosts);
             }  
-            $club->djs()->saveMany($hosts);
+            $club->hosts()->saveMany($hosts);
         }
     }
 }

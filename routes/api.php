@@ -6,13 +6,18 @@ use App\Http\Controllers\DjController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\HostController;
+use App\Http\Controllers\LandController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HobbyController;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
+use App\Http\Controllers\TenantController;
 use App\Http\Controllers\PictureController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,88 +99,124 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::delete('role/delete/{id}', [RoleController::class, 'delete'])
         ->middleware(['isroot']);
 
-    // route picture
-    Route::post('picture/update/{id}', [PictureController::class, 'updateImage'])
+    // route lands
+    Route::post('land/create', [LandController::class, 'create']);
+        //->middleware('isadmin');
+    Route::put('land/update/{id}', [LandController::class, 'update']);
+        //->middleware('isadmin');
+    Route::delete('land/delete/{id}', [LandController::class, 'delete']);
+        //->middleware('isadmin');
+    Route::post('land/uploads/{id}', [LandController::class, 'uploadFiles'])
         ->middleware('isadmin');
-    Route::delete('picture/delete/{id}', [PictureController::class, 'delete'])
-        ->middleware('isadmin');
-    Route::get('picture/{id}/update/{favori}', [PictureController::class, 'updateFavori'])
-        ->middleware('isadmin');
+
+    // route tenants
+    Route::post('tenant/create', [TenantController::class, 'create']);
+        //->middleware('isadmin');
+    Route::put('tenant/update/{id}', [TenantController::class, 'update']);
+        //->middleware('isadmin');
+    Route::delete('tenant/delete/{id}', [TenantController::class, 'delete']);
+        //->middleware('isadmin'); 
         
+    // route picture
+    Route::post('picture/update/{id}', [PictureController::class, 'updateImage']);
+        //->middleware('isadmin');
+    Route::delete('picture/delete/{id}', [PictureController::class, 'delete']);
+        //->middleware('isadmin');
+    Route::get('picture/{id}/update/{favori}', [PictureController::class, 'updateFavori']);
+        //->middleware('isadmin');
+   
     // route clubs
-    Route::post('club/create', [ClubController::class, 'create'])
-    ->middleware('managerclub');
-    Route::put('club/update/{id}', [ClubController::class, 'update'])
-    ->middleware('managerclub');
-    Route::delete('club/delete/{id}', [ClubController::class, 'delete'])
-    ->middleware('managerclub');
-    Route::post('club/uploads/{id}', [ClubController::class, 'uploadFiles'])
-    ->middleware('managerclub');
+    Route::post('club/create', [ClubController::class, 'create']);
+    //->middleware('managerclub');
+    Route::put('club/update/{id}', [ClubController::class, 'update']);
+   // ->middleware('managerclub');
+    Route::delete('club/delete/{id}', [ClubController::class, 'delete']);
+    //->middleware('managerclub');
+    Route::post('club/uploads/{id}', [ClubController::class, 'uploadFiles']);
+    //->middleware('managerclub');
 
     // route parties
-    Route::post('party/create', [PartyController::class, 'create'])
-    ->middleware('managerclub');
-    Route::put('party/update/{id}', [PartyController::class, 'update'])
-    ->middleware('managerclub');
-    Route::delete('party/delete/{id}', [PartyController::class, 'delete'])
-    ->middleware('managerclub');
-    Route::post('party/uploads/{id}', [PartyController::class, 'uploadFiles'])
-    ->middleware('managerclub');
+    Route::post('party/create', [PartyController::class, 'create']);
+    //->middleware('managerclub');
+    Route::put('party/update/{id}', [PartyController::class, 'update']);
+    //->middleware('managerclub');
+    Route::delete('party/delete/{id}', [PartyController::class, 'delete']);
+    //->middleware('managerclub');
+    Route::post('party/uploads/{id}', [PartyController::class, 'uploadFiles']);
+    //->middleware('managerclub');
 
     // route dj
-    Route::post('dj/create', [DjController::class, 'create'])
-    ->middleware('managerdj');
-    Route::put('dj/update/{id}', [DjController::class, 'update'])
-    ->middleware('managerdj');
-    Route::delete('dj/delete/{id}', [DjController::class, 'delete'])
-    ->middleware('managerdj');
-    Route::post('dj/uploads/{id}', [DjController::class, 'uploadFiles'])
-    ->middleware('managerdj');
+    Route::post('dj/create', [DjController::class, 'create']);
+    //->middleware('managerdj');
+    Route::put('dj/update/{id}', [DjController::class, 'update']);
+    //->middleware('managerdj');
+    Route::delete('dj/delete/{id}', [DjController::class, 'delete']);
+    //->middleware('managerdj');
+    Route::post('dj/uploads/{id}', [DjController::class, 'uploadFiles']);
+   // ->middleware('managerdj');
 
     // route dancer
-    Route::post('dancer/create', [DancerController::class, 'create'])
-    ->middleware('managerdancer');
-    Route::put('dancer/update/{id}', [DancerController::class, 'update'])
-    ->middleware('managerdancer');
-    Route::delete('dancer/delete/{id}', [DancerController::class, 'delete'])
-    ->middleware('managerdancer');
-    Route::post('dancer/uploads/{id}', [DancerController::class, 'uploadFiles'])
-    ->middleware('managerdancer');
+    Route::post('dancer/create', [DancerController::class, 'create']);
+    //->middleware('managerdancer');
+    Route::put('dancer/update/{id}', [DancerController::class, 'update']);
+    //->middleware('managerdancer');
+    Route::delete('dancer/delete/{id}', [DancerController::class, 'delete']);
+    //->middleware('managerdancer');
+    Route::post('dancer/uploads/{id}', [DancerController::class, 'uploadFiles']);
+    //->middleware('managerdancer');
     });
 
     // route host
-    Route::post('host/create', [HostController::class, 'create'])
-    ->middleware('managerclub');
-    Route::put('host/update/{id}', [HostController::class, 'update'])
-    ->middleware('managerclub');
-    Route::delete('host/delete/{id}', [HostController::class, 'delete'])
-    ->middleware('managerclub');
-    Route::post('host/uploads/{id}', [HostController::class, 'uploadFiles'])
-    ->middleware('managerclub');
+    Route::post('host/create', [HostController::class, 'create']);
+    //->middleware('managerclub');
+    Route::put('host/update/{id}', [HostController::class, 'update']);
+    //->middleware('managerclub');
+    Route::delete('host/delete/{id}', [HostController::class, 'delete']);
+    //->middleware('managerclub');
+    Route::post('host/uploads/{id}', [HostController::class, 'uploadFiles']);
+    //->middleware('managerclub');
 
     // route shop
-    Route::post('shop/create', [ShopController::class, 'create'])
-    ->middleware('isManagerShop');
-    Route::put('shop/update/{id}', [ShopController::class, 'update'])
-    ->middleware('isManagerShop');
-    Route::delete('shop/delete/{id}', [ShopController::class, 'delete'])
-    ->middleware('isManagerShop');
-    Route::post('shop/uploads/{id}', [ShopController::class, 'uploadFiles'])
-    ->middleware('isManagerShop');
+    Route::post('shop/create', [ShopController::class, 'create']);
+    //->middleware('isManagerShop');
+    Route::put('shop/update/{id}', [ShopController::class, 'update']);
+    //->middleware('isManagerShop');
+    Route::delete('shop/delete/{id}', [ShopController::class, 'delete']);
+    //->middleware('isManagerShop');
+    Route::post('shop/uploads/{id}', [ShopController::class, 'uploadFiles']);
+    //->middleware('isManagerShop');
 
     // route hobby
-    Route::post('hobby/create', [HobbyController::class, 'create'])
-    ->middleware('isManagerHobby');
-    Route::put('hobby/update/{id}', [HobbyController::class, 'update'])
-    ->middleware('isManagerHobby');
-    Route::delete('hobby/delete/{id}', [HobbyController::class, 'delete'])
-    ->middleware('isManagerHobby');
-    Route::post('hobby/uploads/{id}', [HobbyController::class, 'uploadFiles'])
-    ->middleware('isManagerHobby');
+    Route::post('hobby/create', [HobbyController::class, 'create']);
+    //->middleware('isManagerHobby');
+    Route::put('hobby/update/{id}', [HobbyController::class, 'update']);
+    //->middleware('isManagerHobby');
+    Route::delete('hobby/delete/{id}', [HobbyController::class, 'delete']);
+    //->middleware('isManagerHobby');
+    Route::post('hobby/uploads/{id}', [HobbyController::class, 'uploadFiles']);
+    //->middleware('isManagerHobby');
+
+     // route activity
+     Route::post('activity/create', [ActivityController::class, 'create']);
+     //->middleware('isManagerHobby');
+     Route::put('activity/update/{id}', [ActivityController::class, 'update']);
+     //->middleware('isManagerHobby');
+     Route::delete('activity/delete/{id}', [ActivityController::class, 'delete']);
+     //->middleware('isManagerHobby');
+     Route::post('activity/uploads/{id}', [ActivityController::class, 'uploadFiles']);
+     //->middleware('isManagerHobby')
 
 /********************
  *** NOT CONNECTED ***
 /***************** */
+
+// route lands
+Route::get('lands', [LandController::class, 'getAll']);
+Route::get('land/{id}', [LandController::class, 'getOne']);
+
+// route tenants
+Route::get('tenants', [TenantController::class, 'getAll']);
+Route::get('tenant/{id}', [TenantController::class, 'getOne']);
 
 //Route club
 Route::get('/club', [ClubController::class, 'getAll']);
@@ -204,4 +245,15 @@ Route::get('/shop/{id}', [ShopController::class, 'getOne']);
 //Route hobby
 Route::get('/hobby', [HobbyController::class, 'getAll']);
 Route::get('/hobby/{id}', [HobbyController::class, 'getOne']);
+
+//Route activity
+Route::get('/activity', [ActivityController::class, 'getAll']);
+Route::get('/activity/{id}', [ActivityController::class, 'getOne']);
+
+// route commentaire club
+Route::get('/commentaire', [CommentaireController::class, 'getAll']);
+Route::get('/commentaire/{id}', [CommentaireController::class, 'getOne']);
+Route::post('commentaire/create', [CommentaireController::class, 'create']);
+Route::put('/commentaire/update/{id}', [CommentaireController::class, 'update']);
+Route::delete('/commentaire/delete/{id}', [CommentaireController::class, 'delete']);
 

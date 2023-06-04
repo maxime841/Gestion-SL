@@ -30,15 +30,52 @@ class ClubController extends Controller
             }
             // recover party
             $club->parties;
-            $club->dancers;
-            $club->djs;
-            $club->hosts;
             // recover pictures of party
             foreach ($club->parties as $party) {
                 foreach ($party->pictures as $picture) {
                     // filter favoris picture of party
                     if ($picture->favori == true) {
                         $party->picture = $picture;
+                    }
+                }
+            };
+            $club->dancers;
+            // recover pictures of dancer
+            foreach ($club->dancers as $dancer) {
+                foreach ($dancer->pictures as $picture) {
+                    // filter favoris picture of dancer
+                    if ($picture->favori == true) {
+                        $dancer->picture = $picture;
+                    }
+                }
+            };
+            $club->djs;
+            // recover pictures of djs
+            foreach ($club->djs as $dj) {
+                foreach ($dj->pictures as $picture) {
+                    // filter favoris picture of dj
+                    if ($picture->favori == true) {
+                        $dj->picture = $picture;
+                    }
+                }
+            };
+            $club->hosts;
+            // recover pictures of hosts
+            foreach ($club->hosts as $host) {
+                foreach ($host->pictures as $picture) {
+                    // filter favoris picture of host
+                    if ($picture->favori == true) {
+                        $host->picture = $picture;
+                    }
+                }
+            };
+            $club->commentaires;
+            // recover pictures of commentaires
+            foreach ($club->commentaires as $commentaire) {
+                foreach ($commentaire->pictures as $picture) {
+                    // filter favoris picture of commentaire
+                    if ($picture->favori == true) {
+                        $commentaire->picture = $picture;
                     }
                 }
             };
@@ -62,6 +99,10 @@ class ClubController extends Controller
             }
             // recover party
             $club->parties;
+            $club->djs;
+            $club->hosts;
+            $club->dancers;
+            $club->commentaires;
             // recover pictures of party
             foreach ($club->parties as $party) {
                 foreach ($party->pictures as $picture) {
