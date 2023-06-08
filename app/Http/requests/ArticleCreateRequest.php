@@ -30,7 +30,7 @@ class ArticleCreateRequest extends FormRequest
             'owner' => ['required', 'string'],
             'presentation' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'number'],
+            'price' => ['required', 'string'],
             'tag' => ['required', 'string']
         ];
     }

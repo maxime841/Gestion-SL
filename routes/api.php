@@ -15,6 +15,7 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CommentaireController;
@@ -76,8 +77,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->middleware('ispublic');
     Route::put('user/profil/update/password', [UserController::class, 'updatePassword'])
         ->middleware('ispublic');
-    Route::get('users', [UserController::class, 'getAll'])->middleware('isadmin');
-    Route::get('user/{id}', [UserController::class, 'getOne'])->middleware('isadmin');
+    Route::get('users', [UserController::class, 'getAll']);//->middleware('isadmin');
+    Route::get('user/{id}', [UserController::class, 'getOne']);//->middleware('isadmin');
     Route::get('user/{iduser}/update-role/{idrole}', [UserController::class, 'updateRoleOfUser'])
         ->middleware('isadmin');
     Route::delete('user/delete', [UserController::class, 'deleteCurrent'])
@@ -106,8 +107,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         //->middleware('isadmin');
     Route::delete('land/delete/{id}', [LandController::class, 'delete']);
         //->middleware('isadmin');
-    Route::post('land/uploads/{id}', [LandController::class, 'uploadFiles'])
-        ->middleware('isadmin');
+    Route::post('land/uploads/{id}', [LandController::class, 'uploadFiles']);
+        //->middleware('isadmin');
 
     // route tenants
     Route::post('tenant/create', [TenantController::class, 'create']);
@@ -206,10 +207,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::post('activity/uploads/{id}', [ActivityController::class, 'uploadFiles']);
      //->middleware('isManagerHobby')
 
+     // route article
+     Route::post('article/create', [ArticleController::class, 'create']);
+     //->middleware('isManagerHobby');
+     Route::put('article/update/{id}', [ArticleController::class, 'update']);
+     //->middleware('isManagerHobby');
+     Route::delete('article/delete/{id}', [ArticleController::class, 'delete']);
+     //->middleware('isManagerHobby');
+     Route::post('article/uploads/{id}', [ArticleController::class, 'uploadFiles']);
+     //->middleware('isManagerHobby')
+
 /********************
  *** NOT CONNECTED ***
 /***************** */
-
 // route lands
 Route::get('lands', [LandController::class, 'getAll']);
 Route::get('land/{id}', [LandController::class, 'getOne']);
@@ -241,6 +251,10 @@ Route::get('/host/{id}', [HostController::class, 'getOne']);
 //Route shop
 Route::get('/shop', [ShopController::class, 'getAll']);
 Route::get('/shop/{id}', [ShopController::class, 'getOne']);
+
+//Route article
+Route::get('/article', [ArticleController::class, 'getAll']);
+Route::get('/article/{id}', [ArticleController::class, 'getOne']);
 
 //Route hobby
 Route::get('/hobby', [HobbyController::class, 'getAll']);
