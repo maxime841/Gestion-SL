@@ -26,10 +26,9 @@ class DatabaseSeeder extends Seeder
             ArticleSeeder::class,
             HobbySeeder::class,
             ActivitySeeder::class,
-            CommentaireSeeder::class,
             LandSeeder::class,
-            HouseSeeder::class,
             TenantSeeder::class,
+            CommentaireSeeder::class,
         ]);
     }
 }

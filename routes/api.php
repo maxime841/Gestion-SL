@@ -11,7 +11,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HobbyController;
-use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\DancerController;
 use App\Http\Controllers\TenantController;
@@ -229,45 +228,45 @@ Route::get('tenants', [TenantController::class, 'getAll']);
 Route::get('tenant/{id}', [TenantController::class, 'getOne']);
 
 //Route club
-Route::get('/club', [ClubController::class, 'getAll']);
+Route::get('/clubs', [ClubController::class, 'getAll']);
 Route::get('/club/{id}', [ClubController::class, 'getOne']);
 
 //Route dj
-Route::get('/dj', [DjController::class, 'getAll']);
+Route::get('/djs', [DjController::class, 'getAll']);
 Route::get('/dj/{id}', [DjController::class, 'getOne']);
 
 //Route dancer
-Route::get('/dancer', [DancerController::class, 'getAll']);
+Route::get('/dancers', [DancerController::class, 'getAll']);
 Route::get('/dancer/{id}', [DancerController::class, 'getOne']);
 
 //Route party
-Route::get('/party', [PartyController::class, 'getAll']);
+Route::get('/parties', [PartyController::class, 'getAll']);
 Route::get('/party/{id}', [PartyController::class, 'getOne']);
 
 //Route host
-Route::get('/host', [HostController::class, 'getAll']);
+Route::get('/hosts', [HostController::class, 'getAll']);
 Route::get('/host/{id}', [HostController::class, 'getOne']);
 
 //Route shop
-Route::get('/shop', [ShopController::class, 'getAll']);
+Route::get('/shops', [ShopController::class, 'getAll']);
 Route::get('/shop/{id}', [ShopController::class, 'getOne']);
 
 //Route article
-Route::get('/article', [ArticleController::class, 'getAll']);
+Route::get('/articles', [ArticleController::class, 'getAll']);
 Route::get('/article/{id}', [ArticleController::class, 'getOne']);
 
 //Route hobby
-Route::get('/hobby', [HobbyController::class, 'getAll']);
+Route::get('/hobbies', [HobbyController::class, 'getAll']);
 Route::get('/hobby/{id}', [HobbyController::class, 'getOne']);
 
 //Route activity
-Route::get('/activity', [ActivityController::class, 'getAll']);
+Route::get('/activities', [ActivityController::class, 'getAll']);
 Route::get('/activity/{id}', [ActivityController::class, 'getOne']);
 
 // route commentaire club
-Route::get('/commentaire', [CommentaireController::class, 'getAll']);
-Route::get('/commentaire/{id}', [CommentaireController::class, 'getOne']);
-Route::post('commentaire/create', [CommentaireController::class, 'create']);
-Route::put('/commentaire/update/{id}', [CommentaireController::class, 'update']);
-Route::delete('/commentaire/delete/{id}', [CommentaireController::class, 'delete']);
+Route::get('/commentaireClub', [CommentaireController::class, 'getAll']);
+Route::get('/commentaireClub/{id}', [CommentaireController::class, 'getOne']);
+Route::post('/commentaireClub/add', [CommentaireController::class, 'store'])->name('comment.add');
+Route::put('/commentaireClub/update/{id}', [CommentaireController::class, 'update']);
+Route::delete('/commentaireClub/delete/{id}', [CommentaireController::class, 'delete']);
 

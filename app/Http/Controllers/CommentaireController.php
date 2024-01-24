@@ -7,12 +7,19 @@ use App\Models\Picture;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CommentClubCreateRequest;
+
 // use App\Http\Requests\CommentUpdateRequest;
 
 class CommentaireController extends Controller
 {
+
+    /*public function __construct()
+    {
+        $this->middleware('auth');
+    }*/
      /**
      * get all commentaires.
      * * 200 [commentaires]
@@ -59,16 +66,47 @@ class CommentaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CommentClubCreateRequest $request, $id)//: JsonResponse
+    public function store(Club $club, CommentClubCreateRequest $request, id $id)//: JsonResponse
     {
+        /*$club = Club::find();
+        $validate = $request->validated();
+        $commentaire = Commentaire::create($validate);
+        //$commentaire->user_id = auth()->user()->id;
+
+        // for image upload on create commentaire club
+        if ($request->image) {
+            $file = $request->file('image');
+            $extension = $file->extension();
+            $nameImage = $commentaire->id . 'commentaire' . uniqid() . '.' . $extension;
+
+            $path = $request->file('image')->storeAs(
+                'public/images/commentaires',
+                $nameImage
+            );
+
+            $picture = Picture::create([
+                'name' => $nameImage,
+                'picture_url' => $path,
+                'favori' => true,
+            ]);
+
+            $commentaire->pictures()->save($picture);
+        }
+
+        $commentaire->pictures;
+
+        $club->commentaires()->save($commentaire);
+
+        return response()->json(['commentaireClub' => $commentaire], 201);*/
+
+        $commentaire = new Commentaire;
+        $commentaire->title = $request->get('title');
+        $commentaire->commentaire = $request->get('commentaire');
+        //$commentaire->user_id = $request->user();
         $club = Club::find($id);
-        Commentaire::create([
-            //'user_id' => Auth()->id,
-            'title' => $club->commentaire->title,
-            'comment_id' => $club->commentaire->id,
-            'commentClub' => $request('commentClub')
-        ]);
-        
+        $club->commentaires()->save($commentaire);
+
+        return back();
     }
 
     /**

@@ -28,8 +28,8 @@ class CommentClubCreateRequest extends FormRequest
         return [
             'title' => ['required', 'string', Rule::unique(Commentaire::class)],
             'commentaire' => ['required', 'string', Rule::unique(Commentaire::class)],
-            //'author' => ['required', 'string'],
-            //'date_comment' => ['required', 'date'],
+            //'parent_id' => 'number'
+            //'club_id' => 'required|exists:club,id'
         ];
     }
 }

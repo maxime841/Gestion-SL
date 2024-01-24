@@ -14,6 +14,7 @@ return [
         'OPTIONS'
     ],
     'allowed_origins' => ['*'],
+    'Access_Control_Allow_Origin' => [' http://127.0.0.1:8000'],
     'allowed_origins_patterns' => [],
     'allowed_headers' => [//  'Content-Type, Authorization, Accept'
         '*'

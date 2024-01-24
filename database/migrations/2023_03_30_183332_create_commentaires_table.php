@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('commentaires', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            //$table->integer('user_id')->unsigned();
+            //$table->integer('parent_id')->unsigned();
             $table->string('title');
             $table->string('commentaire');
-            $table->string('author');
-            $table->date('date_comment');
-
-            $table->integer('commentaireable_id')->nullable();
-            $table->string('commentaireable_type')->nullable();
+            $table->integer('commentable_id')->unsigned();
+            $table->string('commentable_type');
             $table->timestamps();
-        });
+         });
     }
 
     /**

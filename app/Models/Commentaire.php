@@ -10,24 +10,31 @@ class Commentaire extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $fillable = [
-        'avatar',
         'title',
-        'commentaire',
-        'author',
-        'date_comment'
+        'body',
+        'parent_id',
+        'user_id',
         ];
 
      /**
      * Get the parent pictureable model (land or pictureland or house or picturehouse or other).
      */
-    public function commentaireable()
-    {
-        return $this->morphTo();
-    }
     
     public function pictures()
     {
         return $this->morphMany(Picture::class, 'pictureable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function commentable()
+    {
+        return $this->morphTo();
     }
 }

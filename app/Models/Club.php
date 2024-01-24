@@ -50,7 +50,11 @@ class Club extends Model
 
         public function commentaires()
         {
-        return $this->morphMany(Commentaire::class, 'commentaireable');
+        return $this->morphMany(Commentaire::class, 'commentable')->latest();
         }
 
+        public function user()
+        {
+        return $this->belongsTo(User::class);
+        }
 }

@@ -6,7 +6,6 @@ use App\Models\Club;
 use App\Models\Picture;
 use App\Models\Commentaire;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CommentaireSeeder extends Seeder
 {

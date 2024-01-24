@@ -42,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphOne(Picture::class, 'pictureable');
     }
 
+    public function commentaire()
+    {
+        return $this->morphOne(Commentaire::class, 'commentaireable');
+    }
+
     /**
      * variable for relationship in json
      *

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Club;
 use App\Models\Picture;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClubCreateRequest;
 use App\Http\Requests\ClubUpdateRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ClubController extends Controller
 {
@@ -19,6 +20,7 @@ class ClubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function getAll(): JsonResponse
     {
         $clubs = Club::all();
@@ -78,6 +80,7 @@ class ClubController extends Controller
                         $commentaire->picture = $picture;
                     }
                 }
+
             };
         }
         return response()->json(['clubs' => $clubs], 200);
@@ -154,6 +157,7 @@ class ClubController extends Controller
 
         return response()->json(['club' => $club], 201);
     }
+
 
     /**
      * Update the specified resource in storage.

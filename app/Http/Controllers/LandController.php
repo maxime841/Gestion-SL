@@ -47,17 +47,6 @@ class LandController extends Controller
             if ($picture->favori == true) {
                 $land->picture_favoris = $picture;
             }
-            // recover houses
-            $land->houses;
-            // recover pictures of house
-            foreach ($land->houses as $house) {
-                foreach ($house->pictures as $picture) {
-                    // filter favoris picture of house
-                    if ($picture->favori == true) {
-                        $house->picture_favoris = $picture;
-                    }
-                }
-            };
         }
         return response()->json(['land' => $land], 200);
     }
