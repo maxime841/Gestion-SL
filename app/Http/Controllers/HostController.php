@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Host;
+use App\Models\User;
 use App\Models\Picture;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\HostCreateRequest;
 use App\Http\Requests\HostUpdateRequest;
+use App\Http\Requests\CommentHostCreateRequest;
 
 class HostController extends Controller
 {
@@ -43,6 +46,7 @@ class HostController extends Controller
             if ($picture->favori == true) {
                 $host->picture = $picture;
             }
+            $host->commentaires;
         }
         return response()->json(['host' => $host]);
     }
@@ -164,5 +168,21 @@ class HostController extends Controller
             'message' => 'Le host a bien été supprimé',
             'delete' => true,
         ], 200);
+    }
+    public function addCommentaireHost(Host $host, CommentHostCreateRequest $request)
+    {
+        $commentaire = new Commentaire();
+        $commentaire->title = $request->title;
+        $commentaire->content = $request->content;
+        // $commentaire->user_id = $request->user_id;
+        $commentaire->user()->associate($request->user());
+        $user = User::find($request->user_id);
+        $host = Host::find($request->id);
+        $host->commentaires()->save($commentaire, $user);
+
+        return response()->json([
+            'message' => 'Le commentaire du host a bien était ajouté',
+        ], 200);
+
     }
 }

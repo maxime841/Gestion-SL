@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\User;
 use App\Models\Picture;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ClubCreateRequest;
 use App\Http\Requests\ClubUpdateRequest;
+use App\Http\Requests\CommentClubCreateRequest;
 
 class ClubController extends Controller
 {
@@ -106,6 +109,7 @@ class ClubController extends Controller
             $club->hosts;
             $club->dancers;
             $club->commentaires;
+            $club->user;
             // recover pictures of party
             foreach ($club->parties as $party) {
                 foreach ($party->pictures as $picture) {
@@ -266,5 +270,29 @@ class ClubController extends Controller
             'message' => 'Le club a bien été supprimé',
             'delete' => true,
         ], 200);
+    }
+
+    /**
+     * Save commentaire club.
+     *
+     * @param  \App\Club  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addCommentaireClub(Club $club, CommentClubCreateRequest $request)
+    {
+        $commentaire = new Commentaire();
+        $commentaire->title = $request->title;
+        $commentaire->content = $request->content;
+        // $commentaire->user_id = $request->user_id;
+        $commentaire->user()->associate($request->user());
+        $user = User::find($request->user_id);
+        $club = Club::find($request->id);
+        $club->commentaires()->save($commentaire, $user);
+
+        return response()->json([
+            'message' => 'Le commentaire du club a bien était ajouté',
+        ], 200);
+
     }
 }

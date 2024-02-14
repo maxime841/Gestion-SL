@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function commentaire()
     {
-        return $this->morphOne(Commentaire::class, 'commentaireable');
+        return $this->hasMany(Commentaire::class);
     }
 
     /**

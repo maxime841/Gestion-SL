@@ -26,7 +26,7 @@ class CommentaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAll(): JsonResponse
+    public function getAllCommentClub(): JsonResponse
     {
         $commentaires = Commentaire::all();
         foreach ($commentaires as $commentaire) {
@@ -34,7 +34,9 @@ class CommentaireController extends Controller
                 if ($picture->favori == true) {
                     $commentaire->picture = $picture;
                 }
+                $commentaire->user;
             }
+            
         }
         return response()->json(['commentaires' => $commentaires], 200);
     }
@@ -47,7 +49,7 @@ class CommentaireController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function getOne($id): JsonResponse
+    public function getOneCommentClub($id): JsonResponse
     {
         $commentaire = Commentaire::find($id);
         foreach ($commentaire->pictures as $picture) {
@@ -66,7 +68,7 @@ class CommentaireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Club $club, CommentClubCreateRequest $request, id $id)//: JsonResponse
+    public function store(Club $club, CommentClubCreateRequest $request)//: JsonResponse
     {
         /*$club = Club::find();
         $validate = $request->validated();
@@ -99,14 +101,16 @@ class CommentaireController extends Controller
 
         return response()->json(['commentaireClub' => $commentaire], 201);*/
 
-        $commentaire = new Commentaire;
-        $commentaire->title = $request->get('title');
-        $commentaire->commentaire = $request->get('commentaire');
-        //$commentaire->user_id = $request->user();
-        $club = Club::find($id);
+        $club = Club::find($request->get('club_id'));
+        // dd($club);
+        $commentaire = new Commentaire();
+        $commentaire->title = $request->input('title');
+        $commentaire->commentaire = $request->input('commentaire');
+        // $commentaire->user()->associate($request->user());
+
         $club->commentaires()->save($commentaire);
 
-        return back();
+        return response()->json(['commentaireClub' => $commentaire], 201);
     }
 
     /**

@@ -18,11 +18,10 @@ class CommentaireFactory extends Factory
     {
         return [
             "title" =>fake()->text(),
-            "commentaire" => fake()->text(),
-            //"parent_id" => fake()->numberBetween(0, 1000000),
-           // "user_id" => fake()->numberBetween(0, 1000000),
-            "commentable_id" => fake()->numberBetween(0, 1000000),
-            "commentable_type" => fake()->text()
+            "content" => fake()->text(),
+            "commentable_id" => fake()->numberBetween(1, 5),
+            "commentable_type" => fake()->text(),
+            "user_id" => fake()->numberBetween(1, 5),
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Party;
 use App\Models\Picture;
 use App\Models\Commentaire;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Dj extends Model
@@ -35,9 +36,14 @@ class Dj extends Model
         return $this->morphMany(Picture::class, 'pictureable');
         }
 
-    public function commentaires()
+        public function commentaires(): MorphMany
         {
-        return $this->morphMany(Commentaire::class, 'commentaireable');
+            return $this->morphMany(Commentaire::class, 'commentable')->latest();
+        }
+
+        public function user()
+        {
+            return $this->belongsTo(User::class);
         }
 
         /**

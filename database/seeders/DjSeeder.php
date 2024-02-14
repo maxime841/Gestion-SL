@@ -16,7 +16,7 @@ class DjSeeder extends Seeder
      */
     public function run(): void
     {
-        $clubs = Club::all();
+       /* $clubs = Club::all();
         $parties = Party::all();
         foreach ($clubs as $club) {
             foreach ($parties as $party) {
@@ -34,6 +34,19 @@ class DjSeeder extends Seeder
                 $party->djs()->saveMany($djs);
             }  
             $club->djs()->saveMany($djs);
+        }
+    }*/
+
+     // create club
+     $djs = Dj::factory()->count(5)->create();
+     // create pictures for club
+     foreach ($djs as $dj) {
+         $pictures = Picture::factory()->count(4)->create();
+         $pictureFavori = Picture::factory()->count(1)->create([
+             'favori' => true
+         ]);
+         $dj->pictures()->saveMany($pictures);
+         $dj->pictures()->save($pictureFavori[0]);
         }
     }
 }

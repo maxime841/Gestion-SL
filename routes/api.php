@@ -134,6 +134,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //->middleware('managerclub');
     Route::post('club/uploads/{id}', [ClubController::class, 'uploadFiles']);
     //->middleware('managerclub');
+    // Ajout commentaire club
+    Route::post('club/{id}/comment', [ClubController::class, 'addCommentaireClub']);
 
     // route parties
     Route::post('party/create', [PartyController::class, 'create']);
@@ -154,6 +156,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //->middleware('managerdj');
     Route::post('dj/uploads/{id}', [DjController::class, 'uploadFiles']);
    // ->middleware('managerdj');
+   // Ajout commentaire dj
+   Route::post('dj/{id}/comment', [DjController::class, 'addCommentaireDj']);
 
     // route dancer
     Route::post('dancer/create', [DancerController::class, 'create']);
@@ -175,6 +179,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //->middleware('managerclub');
     Route::post('host/uploads/{id}', [HostController::class, 'uploadFiles']);
     //->middleware('managerclub');
+    // Ajout commentaire host
+   Route::post('host/{id}/comment', [HostController::class, 'addCommentaireHost']);
 
     // route shop
     Route::post('shop/create', [ShopController::class, 'create']);
@@ -264,9 +270,13 @@ Route::get('/activities', [ActivityController::class, 'getAll']);
 Route::get('/activity/{id}', [ActivityController::class, 'getOne']);
 
 // route commentaire club
-Route::get('/commentaireClub', [CommentaireController::class, 'getAll']);
-Route::get('/commentaireClub/{id}', [CommentaireController::class, 'getOne']);
-Route::post('/commentaireClub/add', [CommentaireController::class, 'store'])->name('comment.add');
-Route::put('/commentaireClub/update/{id}', [CommentaireController::class, 'update']);
-Route::delete('/commentaireClub/delete/{id}', [CommentaireController::class, 'delete']);
+//Route::get('/commentaireClub', [CommentaireController::class, 'getAllCommentClub']);
+//Route::get('/commentaireClub/{id}', [CommentaireController::class, 'getOneCommentClub']);
+//Route::post('/commentaireClub/add', [CommentaireController::class, 'store'])->name('comment.add');
+//Route::put('/commentaireClub/update/{id}', [CommentaireController::class, 'update']);
+//Route::delete('/commentaireClub/delete/{id}', [CommentaireController::class, 'delete']);
+
+// route commentaire club
+//Route::get('/commentaireDj', [CommentaireController::class, 'getAllCommentDj']);
+//Route::get('/commentaireDj/{id}', [CommentaireController::class, 'getOneCommentDj']);
 

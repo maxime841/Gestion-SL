@@ -6,7 +6,7 @@ use App\Models\Commentaire;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentClubCreateRequest extends FormRequest
+class CommentHostCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class CommentClubCreateRequest extends FormRequest
         return [
             'title' => ['required', 'string', Rule::unique(Commentaire::class)],
             'content' => [ 'string', Rule::unique(Commentaire::class)],
-            //'club_id' => 'integer'
         ];
     }
 }

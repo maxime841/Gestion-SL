@@ -15,7 +15,8 @@ class HostSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {  $clubs = Club::all();
+    {  
+        /*$clubs = Club::all();
         $parties = Party::all();
         foreach ($clubs as $club) {
             foreach ($parties as $party) {
@@ -33,6 +34,19 @@ class HostSeeder extends Seeder
                 $party->hosts()->saveMany($hosts);
             }  
             $club->hosts()->saveMany($hosts);
+        }
+    }*/
+
+     // create club
+     $hosts = Host::factory()->count(5)->create();
+     // create pictures for host
+     foreach ($hosts as $host) {
+         $pictures = Picture::factory()->count(4)->create();
+         $pictureFavori = Picture::factory()->count(1)->create([
+             'favori' => true
+         ]);
+         $host->pictures()->saveMany($pictures);
+         $host->pictures()->save($pictureFavori[0]);
         }
     }
 }

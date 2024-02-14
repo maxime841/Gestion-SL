@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dj;
+use App\Models\User;
 use App\Models\Picture;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\DjCreateRequest;
 use App\Http\Requests\DjUpdateRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CommentDjCreateRequest;
 
 class DjController extends Controller
 {
@@ -27,6 +30,18 @@ class DjController extends Controller
                     $dj->picture = $picture;
                 }
             }
+
+            $dj->commentaires;
+            // recover pictures of commentaires
+            foreach ($dj->commentaires as $commentaire) {
+                foreach ($commentaire->pictures as $picture) {
+                    // filter favoris picture of commentaire
+                    if ($picture->favori == true) {
+                        $commentaire->picture = $picture;
+                    }
+                }
+
+            };
         }
         return response()->json(['djs' => $djs]);
     }
@@ -44,6 +59,7 @@ class DjController extends Controller
             if ($picture->favori == true) {
                 $dj->picture = $picture;
             }
+            $dj->commentaires;
         }
         return response()->json(['dj' => $dj]);
     }
@@ -164,5 +180,22 @@ class DjController extends Controller
             'message' => 'Le dj a bien été supprimé',
             'delete' => true,
         ], 200);
+    }
+
+    public function addCommentaireDj(Dj $dj, CommentDjCreateRequest $request)
+    {
+        $commentaire = new Commentaire();
+        $commentaire->title = $request->title;
+        $commentaire->content = $request->content;
+        // $commentaire->user_id = $request->user_id;
+        $commentaire->user()->associate($request->user());
+        $user = User::find($request->user_id);
+        $dj = Dj::find($request->id);
+        $dj->commentaires()->save($commentaire, $user);
+
+        return response()->json([
+            'message' => 'Le commentaire du dj a bien était ajouté',
+        ], 200);
+
     }
 }
